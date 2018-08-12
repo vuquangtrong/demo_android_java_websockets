@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>WebSocket demo</title>
+    </head>
+    <body>
+    	<p>Websocket Server is at <b>127.0.0.1:6789</b></p>
+    	<p>Received data from server:</p>
+        <script>
+            var ws = new WebSocket("ws://127.0.0.1:6789/"),
+                messages = document.createElement('ul');
+            ws.onmessage = function (event) {
+                var messages = document.getElementsByTagName('ul')[0],
+                    message = document.createElement('li'),
+                    content = document.createTextNode(event.data);
+                message.appendChild(content);
+                messages.appendChild(message);
+            };
+            document.body.appendChild(messages);
+        </script>
+        <p>Refresh this page will disconnect and reconnect to server!</p>
+    </body>
+</html>
